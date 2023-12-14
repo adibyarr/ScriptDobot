@@ -1,0 +1,152 @@
+-- Version: Lua 5.3.5
+a=0
+
+function Pick_One()
+  MovL(P1)
+  PickObject()
+  Jump(P2, "Start=20 ZLimit=50 End=20")
+  Sync()
+  a=a+5
+  print(a)
+  end
+function Place_One()
+  PlaceObject()
+  Sync()
+  end
+  
+function Line_Two()
+  Go(RP(P3, {0,0,50,0}))
+  MovL(P3)
+  Sync()
+  PickObject()
+  Sync()
+  Jump(P2,"Start=20 ZLimit=50 End=10")
+  Sync()
+  a=a+5
+  print(a)
+  end
+  
+function Pick_3()
+  Go(RP(P4,{0,0,50,0}))
+  MovL(P4)
+  PickObject()
+  Sync()
+  Jump(P2,"Start=20 ZLimit=50 End=10")
+  Sync()
+  a=a+5
+  Sync()
+  Print(a)
+  end
+function Pick_4()
+  Go(RP(P5, {0,0,50,0}))
+  MovL(P5)
+  Sync()
+  PickObject()
+  Sync()
+  Jump(P2,"Start=20 ZLimit=50 End=10")
+  Sync()
+  a=a+5
+  print(a)
+  end
+  function Pick_5()
+  Go(RP(P6, {0,0,50,0}))
+  MovL(P6)
+  Sync()
+  PickObject()
+  Sync()
+  Jump(P2,"Start=20 ZLimit=50 End=10")
+  Sync()
+  a=a+5
+  print(a)
+  end
+  function Line_Two()
+  Go(RP(P6, {0,0,50,0}))
+  MovL(P6)
+  Sync()
+  PickObject()
+  Sync()
+  Jump(P2,"Start=20 ZLimit=50 End=10")
+  Sync()
+  a=a+5
+  print(a)
+  end
+  
+  while true do
+  if CheckDigitalInput() then
+    MovJ(InitialPose)
+    Go(RP(P1,{0,0,80,0}))
+    Pick_One()
+    Sync()
+    Place_One()
+    Sync()
+    MovJ(InitialPose)
+    Sync()
+    end
+ if CheckDigitalInput_2() then
+    MovJ(InitialPose)
+    Line_Two()
+    Sync()
+    Place_One()
+    MovJ(InitialPose)
+    Sync()
+    print(a)
+    end
+    if CheckDigitalInput_3() then 
+    MovJ(InitialPose)
+    Pick_3()
+    Sync()
+    Place_One()
+    MovJ(InitialPose)
+    Sync()
+    print(a)
+    end
+    if CheckDigitalInput_4() then 
+    MovJ(InitialPose)
+    Pick_4()
+    Sync()
+    Place_One()
+    MovJ(InitialPose)
+    Sync()
+    print(a)
+    end
+    if CheckDigitalInput_5() then 
+    MovJ(InitialPose)
+    Pick_5()
+    Sync()
+    Place_One()
+    MovJ(InitialPose)
+    Sync()
+    print(a)
+    end
+end
+
+-- Global variable module is only used to define global variables and module functions. The motion command cannot be called here.
+-- Version: Lua 5.3.5
+function PickObject()
+  DO(2,ON)
+  Wait(1000)
+  end
+  
+function PlaceObject()
+  DO(2,OFF)
+  Wait(1000)
+  end
+  
+function CheckDigitalInput()
+  return DI(2)==ON
+  end
+
+function CheckDigitalInput_2()
+  return DI(4)==ON
+  end
+
+function CheckDigitalInput_3()
+  return DI(6)==ON
+  end
+  
+function CheckDigitalInput_4()
+  return DI(5)==ON
+  end
+function CheckDigitalInput_5()
+return DI(3)==ON
+end

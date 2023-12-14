@@ -1,0 +1,48 @@
+-- Version: Lua 5.3.5
+
+-- Initialize variable
+a=0
+
+function check_digitalInput()
+    return DI(2) == ON
+  end
+--Pick and Place 1
+function gerak()
+    MovJ(InitialPose)
+    Go(RP(P1, {0,0,80,0}))
+    MovL(P1)
+    pick_object()
+    Jump(P2, "Start=10 ZLimit=50 End=10"  )
+    print("Pick1 Finish")
+    Go(RP(P2, {0,0,-20,0}))
+    place_object()
+    print("Place1 Finish")
+    place_object()
+    a = 2
+end
+
+--Pick and Place 2
+function Gerak3()
+    Jump(P3, "Start=10 ZLimit=80 End=10"  )
+    MovL(P3)
+    pick_object()
+    print("Pick 2 Finish")
+    Sync()
+    Jump(P4, "Start=10 ZLimit=50 End=10"  )
+    MovL(P4)
+    place_object()
+    Go(RP(P4, {0, 0, 80,0}))
+    print("Place 2 Finish")
+    MovJ(InitialPose)
+    Sync()
+    a = 1
+ end
+--Main Program To Execute the Function
+while a<10 
+   do
+   if check_digitalInput() then
+    gerak()
+    Gerak3()
+   end
+end
+

@@ -1,0 +1,42 @@
+a=0
+
+function CheckDigitalInput()
+  return DI(2)==ON
+end
+
+function PickObject()
+  Wait(500)	
+  DO(2,ON)
+  Sync()
+end
+
+function PlaceObject()
+  Wait(500)
+  DO(2,OFF)
+  Sync()
+end
+
+	
+
+function Pick1()
+  Go(RP(P,{0,0,80,0}))
+  MovL(P)
+  PickObject()
+  Go(RP(P,{0,0,80,0}))
+end 
+
+function Place1()
+  Go(RP(P,{0,0,80,0}))
+  MovL(P)
+  PlaceObject()
+  Go(RP(P,{0,0,80,0}))
+ end
+
+while (a<5) do 
+  if CheckDigitalInput() then
+    MovJ(InitialPose)
+    Pick1()
+    Place1()
+    MovJ(InitialPose)
+    Sync()
+end
