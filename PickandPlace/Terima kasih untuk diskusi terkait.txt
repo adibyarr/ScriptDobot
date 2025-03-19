@@ -1,0 +1,19 @@
+Terima kasih untuk diskusi terkait kebutuhan kamera untuk aplikasi robot guidance.
+
+Berikut item camera yang bisa digunakan untuk aplikasi tersebut.
+
+ 
+
+Type: PLOC2D-621-10RB               Part no.: 1118608            Link
+
+ 
+
+Secara kebutuhan, kami perlu tahu lebih detail terkait concept yang akan dijalankan,
+karena tanpa informasi tersebut, kami akan kirimkan kemera dengan spesifikasi tertinggi,
+
+ 
+
+Namun sbagai bahan review, berikut spesifikasi yang bisa saya informasikan
+
+2D Camera dengan software PLOC2D untuk integrasi dengan robot sebagai fungsi guidance (tidak ada inspeksi yang dilakukan)
+Berdsarkan tipe yang saya informasikan ini, jika kamera diposisikan dengan jarak 550mm, resolusinya adalah 0.3mm dengan Field of View 400mm x 320mm. silahkan refer pada gambar berikut.

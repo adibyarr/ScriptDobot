@@ -1,0 +1,33 @@
+Sync()
+for count = 1, 2 do
+  MoveJ((P1))
+  DhClose(10000,1)
+  Sync()
+  while not ((DhGetStatus(1)<20)) do
+    Sleep(50)
+  end
+  Sync()
+  print(DhGetPosition(1))
+  MoveJ((P2))
+  DhOpen(2000,1)
+  Sleep(50)
+end
+
+ada = 0
+Sync()
+while not (ada==5) do
+  Sleep(50)
+  MoveJ((P1))
+  DhClose(1000,1)
+  Sync()
+  Sync()
+  while not ((DhGetPosition(1)<20)) do
+    Sleep(50)
+  end
+  Wait(0.5 * 1000)
+  Sync()
+  MoveJ((P2))
+  DhOpen(2000,1)
+  Sync()
+  ada = ada + 1
+end

@@ -1,0 +1,43 @@
+-- SMC_ID_Exhibition
+-- Version: Lua 5.3.5
+local slow = {CP=1, SpeedL=5, AccL=5}
+local opit= {CP=50, SpeedJ=10, AccJ,10, SpeedL=10, AccL=10}
+SpeedL=20
+AccL=20
+SpeedJ=20
+AccJ=20
+ function Pick_Auto()
+  if (DI(5))==1 then 
+  MovJ(P4)
+  MovL(P1, slow)
+  DO(1,ON)
+  Wait(700)
+  MovL(P4, opit)
+  Wait(800)
+  Sync()
+  MovJ(P3,opit)
+  MovJ(P5,opit)
+  MovL(P2,slow)
+  DO(1,OFF)
+  Wait(500)
+  MovL(P5,opit)
+end 
+end
+function Place_Auto()
+  MovJ(P3,opit)
+  MovJ(P5,opit)
+  MovL(P2,slow)
+  DO(1,OFF)
+  Wait(500)
+  MovL(P5,opit)
+end
+while true do
+  CylinderOn()
+  MovJ(P3,opit)
+  CylinderOff()
+  Pick_Auto() 
+  MovJ(P3)
+  CylinderOff()
+  end
+  
+  

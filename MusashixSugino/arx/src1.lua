@@ -1,0 +1,2 @@
+-- The subthread, which can set communication, variables, etc.
+-- The motion commands cannot be called here.

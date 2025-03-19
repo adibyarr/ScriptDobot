@@ -1,0 +1,138 @@
+CnvVison(0) -- Connecting to Conveyor ID (Has nothing to do with vision)
+
+function Initializing()
+  -- Homing & Initializing
+  Speed(20)
+  SpeedS(20)
+  Accel(100)
+  AccelS(100)
+  CP(100)
+  DO(5, 0) --VacuumGenerator
+  DO(6, 0) --SV_Vacuum
+  MoveR({0,0,30})
+  Move(P11)
+  Sync()
+  Speed(20)
+  SpeedS(20)
+  DO(1, 0) --Busy
+  DO(2, 0) --Stop Stacking Conveyor
+  DO(3, 0) --Alarm
+  DO(4, 0) --Collision
+  DO(5, 0) --VacuumGenerator
+  DO(6, 0) --SV_Vacuum
+  DO(7, 0) --SV_Retractor 1 & 2
+  DO(8, 0)
+  DO(9, 0)
+  DO(10, 0)
+  DO(11, 0)
+  DO(12, 0)
+  DO(13, 0)
+  DO(14, 0)
+  DO(15, 0)
+  DO(16, 0)
+end        
+
+
+Sync()
+Initializing()
+Speed(100)
+SpeedS(100)
+  
+while true do
+  MoveJ(P11) -- StandBy
+  DO(1,OFF) -- Busy Signal
+  Speed(100)
+  SpeedS(100)
+  WaitDI(3,ON) -- Trigger 1st Pick
+  WaitDI(4,ON)
+  DO(1,ON) -- Busy Signal
+  DO(5,ON) -- Vacuum Genereator
+  WaitDI(8,ON)
+  WaitDI(10,ON)
+  DO(2,OFF)
+  Move(RP(P12,{0,0,80})) -- Pre Pick Pos 1
+  --Sync()
+  DO(6,ON) -- SV Vacuum
+  vacuum = 1
+  WaitDI(4,ON)
+  Move(P12) -- Pick Pos 1
+  --Sync()
+  WaitDI(7, ON) -- Sensor Vacuum
+  DO(2,OFF)
+  Move(RP(P12,{0,0,120})) -- After Pick Pos 1
+  --Sync()
+  DO(7,ON) --Retractor
+  retractor = 1
+  --Move(P14) -- StdBy Place
+  
+  WaitDI(4,ON)
+  Move(RP(P18,{0,0,85})) -- Pre Place Pos 1
+  --Sync()
+  WaitDI(9, ON)
+  WaitDI(11, ON)
+  DO(2,OFF)
+  WaitDI(4,ON)
+  Move(P18) -- Place 1
+  Sync()
+  --WaitDI(4,ON)
+  Speed(100)
+  SpeedS(100)
+  --DO(5, OFF)
+  DO(6, OFF)
+  vacuum = 0
+  --WaitDI(7, OFF)
+  --Move(RP(P18,{0,0,60})) -- After Place Pos 1
+  --Sync()
+  --DO(7,OFF) --Retractor
+  --MoveIO((RP(P13,{0,0,100})),20,7,0) -- Pre Pick Pos 2
+  --Move(RP(P13,{0,0,120})) -- Pre Pick Pos 2
+  MoveIO((RP(P13,{0,0,120})), {{0, 30, 7, 0}})
+  --DO(7,OFF) --Retractor
+  retractor = 0
+  WaitDI(8, ON)
+  WaitDI(10, ON)
+  DO(2,OFF)
+  --DO(5,ON) -- Vacuum Genereator
+  DO(6,ON) -- SV Vacuum
+  vacuum = 1
+
+  --WaitDI(4, ON) -- Trigger 2nd Pick
+  Move(P13) -- Pick Pos 2
+  Sync()
+  WaitDI(7, ON) -- Sensor Vacuum
+  DO(2,OFF)
+  Move(RP(P13,{0,0,100})) -- After Pick Pos 2
+  --Sync()
+  DO(7,ON) -- SV Retractor
+  retractor = 1
+  Move(P14) -- StdBy Place 2
+  
+  while GetCnvObject(0,0) == false do
+    Sleep(20)
+  end
+  
+  SyncCnv(0)
+  --Sync()
+  WaitDI(9, ON)
+  WaitDI(11, ON)
+  DO(2,OFF)
+  Move(P17) -- Place 2
+  --Sync()
+  DO(5, OFF)
+  DO(6, OFF)
+  vacuum = 0
+  --WaitDI(7, OFF)
+  --Sync()
+  StopSyncCnv()
+  --Sleep(20)
+  --Sync()
+  --Move(P14) -- Move Stdby Place
+  --MoveJIO(P11,20,7,0) -- Pre Pick Pos 2
+  --Move(P14) -- StdBy Place 2
+  MoveIO(P14, {{0, 30, 7, 0}})
+  --DO(7,OFF)
+  MoveJ(P11) -- Move Stdby
+  retractor = 0
+  product = 0
+  
+end

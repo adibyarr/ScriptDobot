@@ -1,0 +1,28 @@
+- Rotate Bottle In 0 Position Of Cylinder
+
+while true do
+  DO(7,OFF)
+  Wait(700)
+  DO(5,ON)
+  DO(7,ON)
+  Wait(2000)
+  DO(4,ON)
+  Wait(700)
+  DO(5,OFF)	
+  Wait(500)
+  DO(7,OFF)
+  Wait(2000)
+  DO(3, ON)
+  Wait(1000)
+  DO(3,OFF) 	
+  Wait(2000)
+  DO(7, ON)
+  Wait(2000)
+  DO(5,ON)
+  Wait(800)
+  DO(4,OFF)
+  DO(7,OFF)
+  Wait(700)
+  DO(5,OFF)
+  Sleep(3000)
+end

@@ -1,0 +1,52 @@
+Sync()
+while 1 do
+  Sleep(50)
+  MoveJ((P1))
+  DhOpen(0,1)
+  Sync()
+  print(DhGetStatus(1))
+  Sync()
+  if DI(1) == ON then
+    MoveJ((P2))
+    Move((P3))
+    DhClose(2,1)
+    Sync()
+    while not ((DhGetStatus(1)==2)) do
+      Sleep(50)
+    end
+    Sync()
+    print(DhGetStatus(1))
+    Sync()
+    print(DhGetPosition(1))
+    Sync()
+    print(DhGetStatus(1))
+    MoveJ((P2))
+    MoveJ((P8))
+    Move((P9))
+    DhOpen(1,1)
+    Sync()
+    while not ((DhGetStatus(1)==1)) do
+      Sleep(50)
+    end
+    Move((P8))
+    MoveJ((P1))
+    MoveJ((P4))
+    Move((P5))
+    DhClose(1,1)
+    Sync()
+    while not ((DhGetStatus(1)==2)) do
+      Sleep(50)
+    end
+    Sleep(1 * 1000)
+    Move((P4))
+    MoveJ((P6))
+    Move((P7))
+    DhOpen(0,1)
+    Sync()
+    while not ((DhGetStatus(1)==1)) do
+      Sleep(50)
+    end
+    Move((P6))
+    MoveJ((P1))
+  end
+end
